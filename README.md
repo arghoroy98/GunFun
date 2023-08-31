@@ -98,7 +98,7 @@ The separation algorithm prevents collision between the aliens and makes the gam
 
 This maintainSeparation algorithm is called in the render method, hence it runs for every frame. Here there’s a nested loop where for every alien pair, the separate method is run, which creates a separation force for each alien.
 
-![Uploading image.png…]()
+![image](https://github.com/arghoroy98/GunFun/assets/55654485/bea93d9e-f986-46f7-a818-4cd88978dd70)
 
 Now, inside the separate method, between lines 228 and 230, we first calculate the existing overlap between the two aliens. If there is an overlap, depending on the overlap, we create a separation vector and then scale it according to deltatime.  
   
@@ -114,11 +114,11 @@ Here’s how I implement this behavior.
 
 Whenever the leader alien is present on the screen, all aliens seek towards the leader alien. This logic can be seen here in the moveEnemy method of the GameScreen class:
 
-![](media/46fc4a540a764cdeb29758d0e06c3ac3.png)
+![image](https://github.com/arghoroy98/GunFun/assets/55654485/4a1b0e61-01e8-4052-8e73-e72a735dff3e)
 
 If the aliens are within a specific radius of the leader, the movement of the leader and the follower aliens is automatically coordinated. Otherwise, the aliens all seek towards the leader. As discussed in the previous section, the separation logic for the leader is a bit different from the other aliens and is handled here:
 
-![](media/33aab1cb34730954537af9185acc1b97.png)
+![image](https://github.com/arghoroy98/GunFun/assets/55654485/81149f2c-4a2d-43cc-98c6-eaace2f6e9c9)
 
 Refer to the previous subsection to understand how the separation logic works for the leader. These combined steering algorithms cause the leader to be automatically surrounded by the follower aliens, and then in turn, the entire group follows the leader alien towards the pistol.
 
@@ -131,13 +131,13 @@ This section will mainly talk about the shooting algorithm.
 
 The game has a simple linear shooting algorithm. When the user presses the left mouse button, the Gun fires a laser with constant speed. The reason that I did not use any forces of acceleration/gravity on the laser is because since the game takes place in space, there are no forces present. The shooting is mainly implemented through a Laser class and this fireLasers() method.
 
-![](media/6785e60f7400a61c5cbb9e231af9ebb7.png)
+![image](https://github.com/arghoroy98/GunFun/assets/55654485/cbc0a152-56b8-4686-a1ed-51695099eac9)
 
 Here, every time the user presses the left mouse button, a Laser object is added to a list iterator objects. Inside the render function in the GameScreen class, all Laser objects in the list iterator are rendered every frame.
 
 To detect collisions between the Laser objects and aliens, I use the detectLaserCollisions() method in the GameScreen class. I will explain the main features of the method below:
 
-![](media/8367a6c586fdd46345a481d1518a24cb.png)
+![Uploading image.png…]()
 
 Through a nested loop, we check for every laser if it collides with any alien. If it does, we remove the alien from the list iterator of Aliens. We also handle increasing the score upon every alien hit in this function. On top of that, the spawn rate of the aliens increases with every alien kill until the spawn rate reaches 0.3s. The max fire rate of the Gun is 0.2s, this means a perfect player can theoretically play the game endlessly (although it becomes very difficult)
 ***
