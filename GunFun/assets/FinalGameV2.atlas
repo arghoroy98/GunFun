@@ -1,0 +1,41 @@
+
+FinalGameV2.png
+size: 4096, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+GUN
+  rotate: false
+  xy: 1129, 258
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+L1Background
+  rotate: false
+  xy: 2, 142
+  size: 1125, 750
+  orig: 1125, 750
+  offset: 0, 0
+  index: -1
+Laser
+  rotate: false
+  xy: 2, 2
+  size: 240, 138
+  orig: 240, 138
+  offset: 0, 0
+  index: -1
+alien
+  rotate: false
+  xy: 1129, 292
+  size: 800, 600
+  orig: 800, 600
+  offset: 0, 0
+  index: -1
+alien_leader
+  rotate: false
+  xy: 1931, 292
+  size: 800, 600
+  orig: 800, 600
+  offset: 0, 0
+  index: -1
