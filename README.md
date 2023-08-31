@@ -1,29 +1,30 @@
-**GunFun Documentation**
+# **GunFun Documentation**
 
-Contents
+## Contents
 
-1) Welcome to GunFun 
- 1.1) What is GunFun? 
- 1.2) Controls 
- 1.3) How to install/compile 
- 1.4) Assets 
+#### 1) Welcome to GunFun
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**1.1) What is GunFun?**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**1.2) Controls**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**1.3) How to install/compile**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**1.4) Assets**  
 
-2) Steering Algorithms 
- 2.1) Seek 
- 2.2) Separation 
- 2.2) Flock 
+#### 2) Steering Algorithms  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**2.1) Seek**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**2.2) Separation**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**2.2) Flock**  
 
-3) Other Algorithms 
- 3.1) Shoot 
+#### 3) Other Algorithms  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**3.1) Shoot**  
 
-4) Bugs 
- 4.1) Gun Rotation 
- 4.2) Laser Rotation 
- 4.3) Lag 
+#### 4) Bugs  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**4.1) Gun Rotation**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**4.2) Laser Rotation**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**4.3) Lag**  
 
-5) References 
+#### 5) References 
+***
 
-**1 WELCOME TO GUNFUN**
+### **1 WELCOME TO GUNFUN**
 
 This section will cover what GunFun is, how to install GunFun and how to play the game. The section also provides the controls for the game along with links to the assets used.
 
@@ -35,8 +36,7 @@ The objective of the game is to defend yourself from the relentless horde of inc
 
 Initially, the aliens spawn at a moderate rate, but the more you kill the more they spawn. The game ends whenever an alien comes in contact with your Pistol.
 
-**  
-1.2 Controls**
+**1.2 Controls**
 
 Here are the controls of the game
 
@@ -44,8 +44,7 @@ WASD – Gun Movement
 Mouse – Gun Rotation  
 Left Mouse Button – Shoot
 
-**  
-1.3 How to install/compile**
+**1.3 How to install/compile**
 
 To install/compile the game:
 
@@ -56,8 +55,7 @@ To install/compile the game:
 
 Note: Under one occasion, I have noticed that the jar file just stopped working. I’m not sure if that’s an issue on my end but after running the command in step 3 again, I could not replicate the issue. In any case, if the jar file stops working. Try running the command in step 3 again.
 
-**  
-1.4 Assets**
+**1.4 Assets**
 
 All assets used in the game can be found in the GunFun/assets folder. There are a couple of extra unused assets which I might include in a later version of the game.
 
@@ -71,7 +69,10 @@ All assets used in the game can be found in the GunFun/assets folder. There are 
 
     <https://www.pngwing.com/en/free-png-pfqla>
 
-**2 STEERING ALGORITHMS**
+***
+
+
+### **2 STEERING ALGORITHMS**
 
 This section talks about the steering algorithms that have been used in the game. Overall I have used 2 basic steering algorithms: seek and separation, and 1 complex steering algorithm: flock. In addition, I have also implemented shooting which I will talk about in section 3.
 
@@ -81,24 +82,23 @@ I have used a simple kinematic seek algorithm for the aliens. By default the ali
 
 Here’s how I implemented the seek algorithm:
 
-![](media/cd0ab515c37f3162021e1da87e76f8e0.png)
+![image](https://github.com/arghoroy98/GunFun/assets/55654485/a733df0e-6ab8-4a86-badc-9b7c7351e65e)
 
 Every alien on the screen has the coordinates of the gun as one of its attributes. The angle of rotation is calculated using these coordinates and the coordinates of the alien itself. Next, the alien is rotated towards this angle.
 
-![](media/67f84510bd7382b823a3fd965a7e280c.png)
+![image](https://github.com/arghoroy98/GunFun/assets/55654485/02a45fb7-d8eb-43e0-8d5c-1afdc4a55e77)
 
 Lines 334 and 335 show how the default movement for the seek algorithm is done. The moveEnemy method is run every frame and the alien moves towards the direction of the userGun object at maximum speed.
 
-**  
-2.2 Separation**
+**2.2 Separation**
 
 The separation algorithm prevents collision between the aliens and makes the game look more realistic by preventing clustering. Here’s how I implemented the algorithm.
 
-![](media/d041e523c68e8e74762640b40460bb8d.png)
+![image](https://github.com/arghoroy98/GunFun/assets/55654485/ea1a108e-8046-46a5-a258-d051cbfb2238)
 
 This maintainSeparation algorithm is called in the render method, hence it runs for every frame. Here there’s a nested loop where for every alien pair, the separate method is run, which creates a separation force for each alien.
 
-![](media/33aab1cb34730954537af9185acc1b97.png)
+![Uploading image.png…]()
 
 Now, inside the separate method, between lines 228 and 230, we first calculate the existing overlap between the two aliens. If there is an overlap, depending on the overlap, we create a separation vector and then scale it according to deltatime.  
   
@@ -106,8 +106,6 @@ Now the logic between lines 238 and 243 is for the separation between a leader a
 
 The logic between lines 244 and 247 is for the separation between two ordinary aliens. Depending on the overlap, each alien affects the position of another in such a way so that the overlap decreases or becomes 0.
 
-**  
-**
 
 **2.3 Combined Steering Behavior – Flocking/Formation**
 
@@ -124,10 +122,8 @@ If the aliens are within a specific radius of the leader, the movement of the le
 
 Refer to the previous subsection to understand how the separation logic works for the leader. These combined steering algorithms cause the leader to be automatically surrounded by the follower aliens, and then in turn, the entire group follows the leader alien towards the pistol.
 
-**  
-**
-
-**3 OTHER ALGORITHMS**
+***
+### **3 OTHER ALGORITHMS**
 
 This section will mainly talk about the shooting algorithm.
 
@@ -144,8 +140,8 @@ To detect collisions between the Laser objects and aliens, I use the detectLaser
 ![](media/8367a6c586fdd46345a481d1518a24cb.png)
 
 Through a nested loop, we check for every laser if it collides with any alien. If it does, we remove the alien from the list iterator of Aliens. We also handle increasing the score upon every alien hit in this function. On top of that, the spawn rate of the aliens increases with every alien kill until the spawn rate reaches 0.3s. The max fire rate of the Gun is 0.2s, this means a perfect player can theoretically play the game endlessly (although it becomes very difficult)
-
-**4 BUGS**
+***
+### **4 BUGS**
 
 This section discusses the bugs that I have encountered in the game.
 
@@ -160,8 +156,8 @@ Since laser rotation is tied to gun rotation in my code, the buggy gun rotation 
 **4.3 Lag**
 
 Whenever memory intensive applications such as Chrome and Discord runs in the background, the game seems to lag whenever the user moves the mouse very fast. For optimal experience, I recommend closing all background applications before playing GunFun.
-
-**5 REFERENCES**
+***
+### **5 REFERENCES**
 
 I learned libgdx from this youtube playlist:   
 <https://www.youtube.com/watch?v=DK1sGc4rOT4&list=PLfd-5Q3Fwq0WKrkEKw12nqpfER3MG5_Wi&index=3>
