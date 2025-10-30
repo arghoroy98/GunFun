@@ -159,7 +159,7 @@ Whenever memory intensive applications such as Chrome and Discord runs in the ba
 ***
 ### **5 REFERENCES**
 
-I learned libgdx from this youtube playlist:   
+I learned libgdx from this youtube playlist:
 <https://www.youtube.com/watch?v=DK1sGc4rOT4&list=PLfd-5Q3Fwq0WKrkEKw12nqpfER3MG5_Wi&index=3>
 
 There might be similarity in the code in this video, and my code as I’m new to libgdx and took help from this tutorial to learn how to set up my objects. However the code for the steering algorithms and the shooting mechanism is my own.
